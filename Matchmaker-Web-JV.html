@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<!--
+    Author: Joshua Vachachira
+-->
+
+<head>
+ <title>Matachmaker</title>
+</head>
+
+
+
+<body> 
+<input id="getquestionOneInput" type="text" value="" size="20">
+<script src ="Matchmaker-web-Jv.Js"></script>
+
+<h1> Matchmaker</h1>
+<h2> Let's find your future love </h2>
+
+   
+<label>
+    Do you like Fast and Furious!
+</label>
+<br>
+
+<select id = "q1">
+    <option value='5'>Strongly agree</option> 
+    <option value='4'>agree</option>
+    <option value='3'>Nor agree or nor disagree</option>
+    <option value='2'>disgree</option>
+    <option value='1'>Strongly disagree</option>
+
+</select>
+
+<br>
+<br>
+
+
+<label2>
+    Do you like James bond!
+</label2>
+<br>
+
+<select id = "q2">
+    <option value='5'>Strongly agree</option>
+    <option value='4'>agree</option>
+    <option value='3'>Nor agree or nor disagree</option>
+    <option value='2'>disgree</option>
+    <option value='1'>Strongly disagree</option>
+
+</select>
+<br>
+<br>
+
+<label3>
+    Do you like Iron man!
+</label3>
+<br>
+
+<select id = "q3">
+    <option value='5'>Strongly agree</option>
+    <option value='4'>agree</option>
+    <option value='3'>Nor agree or nor disagree</option>
+    <option value='2'>disgree</option>
+    <option value='1'>Strongly disagree</option>
+
+</select>
+<br>
+<br>
+
+<label4>
+    Do you like Mission Impossible!
+</label4>
+<br>
+
+<select id = "q4">
+    <option value='5'>Strongly agree</option>
+    <option value='4'>agree</option>
+    <option value='3'>Nor agree or nor disagree</option>
+    <option value='2'>disgree</option>
+    <option value='1'>Strongly disagree</option>
+
+</select>
+
+<br>
+<br>
+
+
+<label5>
+    Do you like Captain Jack Sparrow!
+</label5>
+<br>
+
+<select id = "q5">
+    <option value='5'>Strongly agree</option>
+    <option value='4'>agree</option>
+    <option value='3'>Nor agree or nor disagree</option>
+    <option value='2'>disgree</option>
+    <option value='1'>Strongly disagree</option>
+
+</select>
+
+
+<br>
+<br>
+                             
+    <button onclick = "calculateCompatibility()"> Caluclate love </button>
+    <p id="compatibility"></p>
+
+<script>
+ console.log("starting")
+
+function calculateCompatibility() {
+    console.log('calculateCompatibility');
+    
+    Desired_Response = [
+        5, /* strongly agree */
+        4, /* agree */
+        1, /* nor agree or nor disagree */
+        5, /* disagree */
+        2, /* strongly disagree */
+    ]
+    
+    
+    const MAX_SCORE = 25;
+
+
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+    let question4Response = document.getElementById("q3").selectedOptions[0].value;
+    let question5Response = document.getElementById("q5").selectedOptions[0].value;
+    
+    let question1Compability = 5 - Math.abs(question1Response - Desired_Response[0]);
+    let question2Compability = 5 - Math.abs(question2Response - Desired_Response[1]);
+    let question3Compability = 5 - Math.abs(question3Response - Desired_Response[2]);
+    let question4Compability = 5 - Math.abs(question4Response - Desired_Response[3]);
+    let question5Compability = 5 - Math.abs(question5Response - Desired_Response[4]);
+    
+    console.log("c1="+question1Compability);
+    console.log("c2="+question2Compability);
+    console.log("c3="+question3Compability);
+    console.log("c4="+question4Compability);
+    console.log("c5="+question5Compability);
+    
+    
+    let totalCompability = question1Compability + question2Compability + question3Compability + question4Compability + question5Compability;
+    
+    totalCompability *= 100 / MAX_SCORE;
+    totalCompability - Math.round(totalCompability);
+    console.log("tc="+ totalCompability);
+    
+    if(totalCompability < 85) {
+        statement=" Do you what to see a movie";    
+    } else if (totalCompability < 60){
+        statement="do you what to be friends";
+    } else {
+        statment="I think you are one for me";
+    }
+    
+    document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompability + statement;
+}
+</script>
+</body>
+</html>
+
